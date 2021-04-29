@@ -16,6 +16,10 @@
     <a th:href="@{/customer/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить клиента </a>
     <br/>
+    <div> Клиенты с достижением: </div>
+    <td th:text="${achievement.name}">
+    </td>
+    <br/>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">

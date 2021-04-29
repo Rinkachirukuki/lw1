@@ -17,16 +17,6 @@
        class="btn btn-primary btn-sm mb-3"> Добавить клиента </a>
     <br/>
 
-    <form action="#" th:action="@{/customer/list}" th:object="${customerQuery}"
-          method="GET">
-
-        <input type="text" th:field="${customerQuery.query}" class="form-control mb-4 col-4"
-               placeholder="Введите запрос" required>
-
-        <button type="submit" class="btn btn-warning col-2">Поиск</button>
-    </form>
-    <hr>
-
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>

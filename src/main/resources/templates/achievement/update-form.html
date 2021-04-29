@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <title>Добавить достижение</title>
+</head>
+
+<body>
+<div class="container">
+    <h3>Достижения</h3>
+    <hr>
+
+    <p class="h4 mb-4">Достижения</p>
+
+    <form action="#" th:action="@{/achievement/save}" th:object="${achievement}"
+          method="POST">
+
+        <input type="hidden" th:field="*{id}">
+
+        <input type="text" th:field="*{name}" class="form-control mb-4 col-4"
+               placeholder="Название" required>
+
+        <input type="text" th:field="*{description}" class="form-control mb-4 col-4"
+               placeholder="Описание" required>
+
+        <button type="submit" class="btn btn-warning col-2">Сохранить</button>
+    </form>
+    <hr>
+    <a th:href="@{/driver/list}">К списку достижений</a>
+</div>
+</body>
+
+</html>
