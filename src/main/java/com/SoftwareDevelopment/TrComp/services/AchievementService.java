@@ -15,6 +15,7 @@ import java.util.Optional;
 public class AchievementService {
     @Autowired
     AchievementRepository repository;
+
     public Achievement findById(Integer id) {
         Optional<Achievement> result = repository.findById(id);
         Achievement n = null;
