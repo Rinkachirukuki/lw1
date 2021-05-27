@@ -45,19 +45,19 @@ public class DriverSqlRepository  {
     };
 
     public Iterable<Driver> findAll(){
-        String sql = "SELECT * FROM driver";
+        String sql = "CALL GetAllDrivers()";
 
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Driver findById(int id){
-        String sql = "SELECT * FROM driver where driver_id=" + id;
+        String sql = String.format("CALL GetDriverById('%d')", id);
 
         return jdbcTemplate.queryForObject(sql, MAPPER);
     }
 
     public void deleteById(int id) {
-        String sql = "DELETE FROM driver WHERE driver_id=" + id;
+        String sql = String.format("CALL DeleteDriverById('%d')", id);
         jdbcTemplate.execute(sql);
     }
 
@@ -67,17 +67,13 @@ public class DriverSqlRepository  {
         String gender = i.getGender() == null ? "NULL" : "'" + i.getGender().getName() + "'";
 
         if (i.getId() == null){
-            sql = String.format(
-                    "INSERT INTO driver (first_name, last_name, patronymic, gender_name) VALUES ('%s', '%s','%s',%s)",
-                    i.getFirstName(), i.getLastName(), i.getPatronymic(),
-                    gender);
+            sql = String.format("CALL CreateNewDriver('%s', '%s','%s',%s)",
+                    i.getFirstName(), i.getLastName(), i.getPatronymic(), gender);
         }
         else {
-            sql = String.format(
-                    "UPDATE driver SET first_name='%s', last_name='%s', patronymic='%s', gender_name=%s\n"
-                            + "WHERE driver_id='%d'",
-                    i.getFirstName(), i.getLastName(), i.getPatronymic(),
-                    gender,i.getId());
+            sql = String.format("CALL UpdateDriver('%d','%s','%s','%s',%s)",
+                    i.getId(),i.getFirstName(), i.getLastName(), i.getPatronymic(),
+                    gender);
         }
         jdbcTemplate.execute(sql);
     }

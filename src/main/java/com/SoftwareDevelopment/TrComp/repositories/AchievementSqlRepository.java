@@ -86,31 +86,17 @@ public class AchievementSqlRepository {
     };
 
     public Iterable<Achievement> findAll(){
-        String sql =
-                "SELECT achievement.achievement_id, achievement.description, achievement.achievement_name,\n" +
-                "customer_achievement.customer_fk,\n" +
-                "customer.first_name, customer.last_name, customer.patronymic, customer.gender_name, customer.privilege_name FROM achievement\n" +
-                "LEFT JOIN customer_achievement on customer_achievement.achievement_fk = achievement.achievement_id\n" +
-                "LEFT JOIN customer on customer_achievement.customer_fk = customer.customer_id\n" +
-                "ORDER BY achievement.achievement_id";
+        String sql = "CALL GetAllAchievements()";
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Achievement findById(int id){
-        String sql = String.format(
-                "SELECT achievement.achievement_id, achievement.description, achievement.achievement_name,\n" +
-                "customer_achievement.customer_fk,\n" +
-                "customer.first_name, customer.last_name, customer.patronymic, customer.gender_name, customer.privilege_name FROM achievement\n" +
-                "LEFT JOIN customer_achievement on customer_achievement.achievement_fk = achievement.achievement_id\n" +
-                "LEFT JOIN customer on customer_achievement.customer_fk = customer.customer_id\n" +
-                "WHERE achievement.achievement_id = '%d'\n" +
-                "ORDER BY customer_achievement.achievement_fk", id);
-
+        String sql = String.format("CALL GetAchievementById('%d')", id);
         return jdbcTemplate.query(sql, MAPPER).get(0);
     }
 
     public void deleteById(int id) {
-        String sql = "DELETE FROM achievement WHERE achievement_id=" + id;
+        String sql = String.format("CALL DeleteAchievementById('%d')", id);
         jdbcTemplate.execute(sql);
     }
 
@@ -121,14 +107,10 @@ public class AchievementSqlRepository {
         String sql;
 
         if(id == null){
-            sql = String
-                    .format("INSERT INTO achievement (`description`, `achievement_name`)\n" +
-                            " VALUES ('%s', '%s')", i.getDescription(), i.getName());
+            sql = String.format("CALL CreateNewAchievement('%s', '%s')", i.getName(), i.getDescription());
         }
         else {
-            sql = String
-                    .format("UPDATE achievement SET `description` = '%s', `achievement_name` = '%s'\n" +
-                            "WHERE (`achievement_id` = '%d');", i.getDescription(), i.getName(), id);
+            sql = String.format("CALL UpdateAchievement('%d', '%s', '%s')", id, i.getDescription(), i.getName());
         }
 
         jdbcTemplate.execute(sql);
@@ -136,7 +118,7 @@ public class AchievementSqlRepository {
         Set<Customer> customerSet = i.getCustomers();
 
         if (i.getId()!= null){
-            String insertSql = "INSERT INTO customer_achievement (`customer_fk`, `achievement_fk`) VALUES ('%d', '%s') ON DUPLICATE KEY UPDATE customer_fk = customer_fk";
+            String insertSql = "CALL SetCustomerAchievement('%s', '%s')";
 
             deleteAllAchievementRelationships(id);
 

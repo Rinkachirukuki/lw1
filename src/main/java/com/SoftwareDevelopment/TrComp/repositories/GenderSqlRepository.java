@@ -37,26 +37,25 @@ public class GenderSqlRepository {
     };
 
     public Iterable<Gender> findAll(){
-        String sql = "SELECT * FROM gender";
-
+        String sql = "CALL GetAllGenders()";
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Gender findById(String id){
-        String sql = "SELECT * FROM driver WHERE gender_name=" + id;
+        String sql = String.format("CALL GetGenderById('%s')", id);
 
         return jdbcTemplate.queryForObject(sql, MAPPER);
     }
 
     public void deleteById(String id) {
-        String sql = "DELETE FROM gender WHERE gender_name=" + id;
+        String sql = String.format("CALL DeleteGenderById('%s')", id);
         jdbcTemplate.execute(sql);
     }
 
     public void save(Gender i) {
 
         String sql = String.format(
-                "INSERT INTO gender (gender_name) VALUES ('%s') ON DUPLICATE KEY UPDATE gender_name = gender_name",
+                "CALL SaveAndUpdateGender('%s')",
                 i.getName());
 
         jdbcTemplate.execute(sql);

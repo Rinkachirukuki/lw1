@@ -40,19 +40,17 @@ public class PrivilegeSqlRepository {
     };
 
     public Iterable<Privilege> findAll(){
-        String sql = "SELECT * FROM privilege";
-
+        String sql = "CALL GetAllPrivileges()";
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Privilege findById(String id){
-        String sql = "SELECT * FROM privilege WHERE privilege_name=" + id;
-
+        String sql = String.format("CALL GetPrivilegesById('%s')", id);
         return jdbcTemplate.queryForObject(sql, MAPPER);
     }
 
     public void deleteById(String id) {
-        String sql = "DELETE FROM privilege WHERE privilege_name=" + id;
+        String sql = String.format("CALL DeletePrivilegesById('%s')", id);
         jdbcTemplate.execute(sql);
     }
 
@@ -62,9 +60,8 @@ public class PrivilegeSqlRepository {
         int discountSize = i.getDiscountSize();
 
         String sql = String.format(
-                "INSERT INTO privilege (privilege_name, description, discount_size) VALUES ('%s','%s','%d')"+
-                        " ON DUPLICATE KEY UPDATE description = '%s', discount_size = '%d'",
-                        i.getName(),description,discountSize,description,discountSize);
+                "CALL SaveAndUpdatePrivilege('%s', '%s', '%d')",
+                        i.getName(),description,discountSize);
 
         jdbcTemplate.execute(sql);
     }

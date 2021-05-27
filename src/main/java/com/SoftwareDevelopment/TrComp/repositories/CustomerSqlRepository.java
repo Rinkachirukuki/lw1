@@ -88,32 +88,19 @@ public class CustomerSqlRepository {
     };
 
     public Iterable<Customer> findAll(){
-        String sql =
-                "SELECT customer.customer_id, customer.first_name, customer.last_name, customer.patronymic, customer.gender_name, customer.privilege_name,\n" +
-                "achievement.achievement_id, achievement.description, achievement.achievement_name\n" +
-                "FROM customer\n" +
-                "LEFT JOIN customer_achievement on customer_achievement.customer_fk = customer.customer_id\n" +
-                "LEFT JOIN achievement on customer_achievement.achievement_fk = achievement.achievement_id\n" +
-                "ORDER BY customer.customer_id";
+        String sql = "CALL GetAllCustomers()";
 
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Customer findById(int id){
-        String sql = String.format(
-                "SELECT customer.customer_id, customer.first_name, customer.last_name, customer.patronymic, customer.gender_name, customer.privilege_name,\n" +
-                "achievement.achievement_id, achievement.description, achievement.achievement_name\n" +
-                "FROM customer\n" +
-                "LEFT JOIN customer_achievement on customer_achievement.customer_fk = customer.customer_id\n" +
-                "LEFT JOIN achievement on customer_achievement.achievement_fk = achievement.achievement_id\n" +
-                "WHERE customer.customer_id = '%d'\n"+
-                "ORDER BY achievement.achievement_id", id);
+        String sql = String.format("CALL GetCustomerById('%d')", id);
 
         return jdbcTemplate.query(sql, MAPPER).get(0);
     }
 
     public void deleteById(int id) {
-        String sql = "DELETE FROM customer WHERE customer_id=" + id;
+        String sql = String.format("CALL DeleteCustomerById('%d')", id);
         jdbcTemplate.execute(sql);
     }
 
@@ -127,16 +114,12 @@ public class CustomerSqlRepository {
         String sql;
 
         if(id == null){
-            sql = String
-                    .format("INSERT INTO `customer` (`first_name`, `last_name`, `patronymic`, `gender_name`, `privilege_name`)\n" +
-                            "VALUES ('%s', '%s', '%s', %s, %s);",
+            sql = String.format("CALL CreateNewCustomer('%s', '%s', '%s', %s, %s)",
                             i.getFirstName(), i.getLastName(),i.getPatronymic(),gender,privilege);
         }
         else {
-            sql = String
-                    .format("UPDATE `customer` SET `first_name` = '%s', `last_name` = '%s', `patronymic` = '%s', `gender_name` = %s, `privilege_name` = %s\n" +
-                            "WHERE (`customer_id` = '%d');",
-                            i.getFirstName(), i.getLastName(),i.getPatronymic(),gender,privilege, id);
+            sql = String.format("CALL UpdateCustomer('%d', '%s', '%s', '%s', %s, %s)",
+                            id, i.getFirstName(), i.getLastName(),i.getPatronymic(),gender,privilege);
         }
 
         jdbcTemplate.execute(sql);
@@ -144,7 +127,7 @@ public class CustomerSqlRepository {
         Set<Achievement> achievementSet = i.getAchievements();
 
         if (i.getId()!= null){
-            String insertSql = "INSERT INTO customer_achievement (`customer_fk`, `achievement_fk`) VALUES ('%d', '%s') ON DUPLICATE KEY UPDATE customer_fk = customer_fk";
+            String insertSql = "CALL SetCustomerAchievement('%s', '%s')";
 
             deleteAllCustomerRelationships(id);
 
@@ -154,7 +137,7 @@ public class CustomerSqlRepository {
         }
     }
     private void deleteAllCustomerRelationships(int id) {
-        String sql = "DELETE FROM customer_achievement WHERE customer_fk=" + id;
+        String sql = String.format("CALL DeleteAllCustomerRelationships('%s')", id);
         jdbcTemplate.execute(sql);
     }
 

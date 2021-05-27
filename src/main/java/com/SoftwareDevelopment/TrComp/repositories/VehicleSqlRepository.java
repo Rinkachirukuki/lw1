@@ -55,28 +55,18 @@ public class VehicleSqlRepository {
     };
 
     public Iterable<Vehicle> findAll(){
-        String sql =
-                "SELECT vehicle.vehicle_id, vehicle.model , vehicle.number ,vehicle.driver_id, vehicle.mark_name,\n" +
-                "driver.first_name, driver.last_name, driver.patronymic\n" +
-                "FROM vehicle\n" +
-                "LEFT JOIN driver ON driver.driver_id = vehicle.driver_id";
-
+        String sql = "CALL GetAllVehicles()";
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Vehicle findById(int id){
-        String sql =
-                "SELECT vehicle.vehicle_id, vehicle.model , vehicle.number ,vehicle.driver_id, vehicle.mark_name,\n" +
-                "driver.first_name, driver.last_name, driver.patronymic\n" +
-                "FROM vehicle\n" +
-                "LEFT JOIN driver ON driver.driver_id = vehicle.driver_id\n"+
-                "WHERE vehicle.vehicle_id="+ id;
+        String sql = String.format("CALL GetVehicleById('%d')", id);
 
         return jdbcTemplate.queryForObject(sql, MAPPER);
     }
 
     public void deleteById(int id) {
-        String sql = "DELETE FROM vehicle WHERE vehicle_id=" + id;
+        String sql = String.format("CALL DeleteVehicleById('%d')", id);
         jdbcTemplate.execute(sql);
     }
 
@@ -88,16 +78,15 @@ public class VehicleSqlRepository {
 
         if (i.getId() == null){
             sql = String.format(
-                    "INSERT INTO vehicle (model, number, driver_id, mark_name) VALUES ('%s', '%s',%s,%s)",
+                    "CALL CreateNewVehicle('%s','%s',%s,%s)",
                     i.getModel(), i.getNumber(), driver,
                     mark);
         }
         else {
             sql = String.format(
-                    "UPDATE vehicle SET model='%s', number='%s', driver_id=%s, mark_name=%s "
-                            + "WHERE vehicle_id='%d'",
-                    i.getModel(), i.getNumber(), driver,
-                    mark,i.getId());
+                    "CALL UpdateVehicle('%d','%s','%s',%s,%s)",
+                    i.getId(),i.getModel(), i.getNumber(), driver,
+                    mark);
         }
         jdbcTemplate.execute(sql);
     }

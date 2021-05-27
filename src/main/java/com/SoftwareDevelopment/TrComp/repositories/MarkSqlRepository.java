@@ -37,26 +37,26 @@ public class MarkSqlRepository{
     };
 
     public Iterable<Mark> findAll(){
-        String sql = "SELECT * FROM mark";
+        String sql = "CALL GetAllMarks()";
 
         return jdbcTemplate.query(sql, MAPPER);
     }
 
     public Mark findById(String id){
-        String sql = "SELECT * FROM mark WHERE mark_name=" + id;
+        String sql = String.format("CALL GetMarkById('%s')", id);
 
         return jdbcTemplate.queryForObject(sql, MAPPER);
     }
 
     public void deleteById(String id) {
-        String sql = "DELETE FROM mark WHERE mark_name=" + id;
+        String sql = String.format("CALL DeleteMarkById('%s')", id);
         jdbcTemplate.execute(sql);
     }
 
     public void save(Mark i) {
 
         String sql = String.format(
-                "INSERT INTO mark (mark_name) VALUES ('%s') ON DUPLICATE KEY UPDATE mark_name = mark_name",
+                "CALL SaveAndUpdateMark('%s')",
                 i.getName());
 
         jdbcTemplate.execute(sql);
