@@ -37,9 +37,10 @@
             </option>
         </select>
 
-        <select class="form-control selectpicker mb-4 col-4" th:field="*{driver}" name="driver">
+        <select class="form-control selectpicker mb-4 col-4" th:field="*{driver.id}" name="driver">
             <option th:value='null'
                     th:text="'Нет водителя'">
+
             <option th:each="tempDriver : ${driverList}"
                     th:value="${tempDriver.id}"
                     th:text="${tempDriver}">

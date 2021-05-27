@@ -67,8 +67,6 @@ public class CustomerController {
         return "redirect:/achievement/list?customerId="+customerId;
     }
 
-
-
     @GetMapping("/customersByAchievement")
     public String customersByAchievement(@RequestParam int achievementId, Model model) {
 
