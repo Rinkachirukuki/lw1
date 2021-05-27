@@ -1,6 +1,5 @@
 package com.SoftwareDevelopment.TrComp.controllers;
 
-import com.SoftwareDevelopment.TrComp.inquiries.CustomerQuery;
 import com.SoftwareDevelopment.TrComp.models.Achievement;
 import com.SoftwareDevelopment.TrComp.models.Customer;
 import com.SoftwareDevelopment.TrComp.services.*;
@@ -9,8 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 
 
 @Controller
@@ -31,9 +29,9 @@ public class CustomerController {
     private AchievementService achievementService;
 
     @GetMapping("/list")
-    public String showAllVehicles(Pageable page, CustomerQuery customerQuery, Model model){
+    public String showAllVehicles(Model model){
 
-        model.addAttribute("customers", customerService.findAll(page));
+        model.addAttribute("customers", customerService.findAll());
 
         return "customer/show-all-customers.html";
     }
@@ -50,7 +48,7 @@ public class CustomerController {
 
         Customer customer = customerService.findById(customerId);
 
-        customer.getAchievements().remove(achievementService.findById(achievementId));
+        customer.removeAchievementById(achievementId);
 
         customerService.save(customer);
 
@@ -72,11 +70,11 @@ public class CustomerController {
 
 
     @GetMapping("/customersByAchievement")
-    public String customersByAchievement(Pageable page, @RequestParam int achievementId, Model model) {
+    public String customersByAchievement(@RequestParam int achievementId, Model model) {
 
         model.addAttribute("customer", achievementService.findById(achievementId));
 
-        model.addAttribute("achievementList", achievementService.findAll(page));
+        model.addAttribute("achievementList", achievementService.findAll());
 
         return "customer/show-all-achievements";
     }
@@ -109,6 +107,7 @@ public class CustomerController {
 
     @PostMapping("/save")
     public String customerSave(@ModelAttribute("customer") Customer customer) {
+
         customerService.save(customer);
         return "redirect:/customer/list";
     }

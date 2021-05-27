@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Achievement {
+
     @Id
     @Column(name = "achievement_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +25,7 @@ public class Achievement {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "achievements",
             cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
             })
-    private Set<Customer> customers;
+    private Set<Customer> customers = new HashSet<>();
 
     public Achievement() {
     }
@@ -54,6 +56,10 @@ public class Achievement {
 
     public Set<Customer> getCustomers() {
         return customers;
+    }
+
+    public boolean AddCustomer(Customer c){
+        return customers.add(c);
     }
 
     public void setCustomers(Set<Customer> customers) {

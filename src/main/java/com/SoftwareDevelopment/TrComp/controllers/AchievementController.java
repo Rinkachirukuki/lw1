@@ -34,7 +34,7 @@ public class AchievementController {
     @GetMapping("/list")
     public String customerAchievementList(Pageable page, @RequestParam(value= "customerId",defaultValue = "0", required=false) int customerId, Model model) {
 
-        model.addAttribute("achievementList", achievementService.findAll(page));
+        model.addAttribute("achievementList", achievementService.findAll());
 
         if (customerId != 0) {
             model.addAttribute("customer", customerService.findById(customerId));
@@ -46,7 +46,7 @@ public class AchievementController {
     }
 
     @GetMapping("/customerList")
-    public String customersByAchievement(Pageable page, @RequestParam int achievementId, Model model) {
+    public String customersByAchievement(@RequestParam int achievementId, Model model) {
 
         model.addAttribute("achievement", achievementService.findById(achievementId));
 
@@ -54,7 +54,7 @@ public class AchievementController {
     }
 
     @GetMapping("/add")
-    public String addAchievement(Pageable page, Model model) {
+    public String addAchievement(Model model) {
 
         model.addAttribute("achievement", new Achievement());
 
@@ -62,7 +62,7 @@ public class AchievementController {
     }
 
     @PostMapping("/save")
-    public String achievementSave(@ModelAttribute("vehicle") Achievement achievement) {
+    public String achievementSave(@ModelAttribute("achievement") Achievement achievement) {
         achievementService.save(achievement);
         return "redirect:/achievement/list";
     }

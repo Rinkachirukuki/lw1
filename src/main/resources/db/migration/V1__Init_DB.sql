@@ -63,8 +63,12 @@ CREATE TABLE `customer_achievement` (
   `achievement_fk` int NOT NULL,
   PRIMARY KEY (`customer_fk`,`achievement_fk`),
   KEY `FKgupx23gi2djhdb47bgat9amb2` (`achievement_fk`),
-  CONSTRAINT `FK64av7vnahv1ghwv64uobov3ec` FOREIGN KEY (`customer_fk`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `FK64av7vnahv1ghwv64uobov3ec` FOREIGN KEY (`customer_fk`) REFERENCES `customer` (`customer_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKgupx23gi2djhdb47bgat9amb2` FOREIGN KEY (`achievement_fk`) REFERENCES `achievement` (`achievement_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

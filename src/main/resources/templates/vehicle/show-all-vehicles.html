@@ -34,7 +34,7 @@
 
             <td th:text="${tempVehicle.id}" />
             <td th:text="${tempVehicle.number}" />
-            <td th:text="${tempVehicle.mark} ? ${tempVehicle.mark.name} : 'Не указано'" />
+            <td th:text="${tempVehicle.mark.name} ? ${tempVehicle.mark.name} : 'Не указано'" />
             <td th:text="${tempVehicle.model}" />
             <td>
                 <a th:href="@{/vehicle/update (id=${tempVehicle.id})}"
@@ -48,60 +48,6 @@
 
         </tbody>
     </table>
-
-
-    <nav aria-label="Pagination" th:if="${vehicles.totalPages gt 0}">
-        <ul class="pagination justify-content-center font-weight-bold">
-
-            <li class="page-item" th:classappend="${vehicles.number eq 0} ? 'disabled'">
-                <a class="page-link"
-                   th:href="@{/vehicle/list (pageNumber=${vehicles.number lt 2 ? 1 : vehicles.number},pageSize=${vehicles.size})}"
-                   aria-label="Previous" title="Previous Page" data-toggle="tooltip">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-
-            <li class="page-item" th:classappend="${i eq vehicles.number + 1} ? 'active'"
-                th:each="i : ${#numbers.sequence( 1, vehicles.totalPages, 1)}">
-                <a class="page-link" th:href="@{/vehicle/list (pageNumber=${i},pageSize=${vehicles.size})}" th:text="${i}"
-                   th:title="${'Page '+ i}" data-toggle="tooltip"></a>
-            </li>
-
-            <li class="page-item" th:classappend="${vehicles.number + 1 eq vehicles.totalPages} ? 'disabled'">
-                <a class="page-link"
-                   th:href="@{/vehicle/list (pageNumber=${vehicles.number + 2},pageSize=${vehicles.size})}"
-                   aria-label="Next" title="Next Page" data-toggle="tooltip">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-
-        </ul>
-    </nav>
-    <div class="container" align="right">
-        Записей на странице:
-        <a class="text-end" th:href="@{/vehicle/list (pageNumber=${vehicles.number + 1}, pageSize=5)}"
-           th:text="5"></a>
-        <a class="text-end" th:href="@{/vehicle/list (pageNumber=${vehicles.number + 1}, pageSize=10)}"
-           th:text="10"></a>
-        <a class="text-end" th:href="@{/vehicle/list (pageNumber=${vehicles.number + 1}, pageSize=15)}"
-           th:text="15"></a>
-    </div>
-
-
-    <!--
-
-    <ui class="pagination" th:if="${vehicles.totalPages > 0}">
-        <li th:each="pageNumber : ${vehicles.numbers}"
-            th:class = "${pageNumber == number} ? active">
-        <a th:href="@{/vehicles/list (pageNumber=${pageNumber})}" th:text = "${pageNumber}">
-
-        </a>
-
-        </li>
-
-    </ui>
-
-    -->
 
     <hr>
     <a th:href="@{/}">В главное меню</a>

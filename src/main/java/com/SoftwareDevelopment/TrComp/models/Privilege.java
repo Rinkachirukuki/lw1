@@ -58,6 +58,11 @@ public class Privilege {
         this.customers = customers;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     @PreRemove
     private void preRemove() {
         for (Customer s : customers) {

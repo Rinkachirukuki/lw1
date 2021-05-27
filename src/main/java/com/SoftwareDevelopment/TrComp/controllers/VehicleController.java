@@ -27,9 +27,9 @@ public class VehicleController {
     private DriverService driverService;
 
     @GetMapping("/list")
-    public String showAllVehicles(Pageable page, Model model){
+    public String showAllVehicles(Model model){
 
-        model.addAttribute("vehicles",vehicleService.findAll(page));
+        model.addAttribute("vehicles",vehicleService.findAll());
 
         return "vehicle/show-all-vehicles.html";
     }

@@ -46,6 +46,11 @@ public class Gender {
         this.drivers = drivers;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     @PreRemove
     private void preRemove() {
         for (Customer s : customers) {

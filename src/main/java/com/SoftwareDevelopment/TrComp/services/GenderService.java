@@ -2,8 +2,7 @@ package com.SoftwareDevelopment.TrComp.services;
 
 import com.SoftwareDevelopment.TrComp.models.Gender;
 import com.SoftwareDevelopment.TrComp.models.Mark;
-import com.SoftwareDevelopment.TrComp.repositories.GenderRepository;
-import com.SoftwareDevelopment.TrComp.repositories.MarkRepository;
+import com.SoftwareDevelopment.TrComp.repositories.GenderSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,34 +13,20 @@ import java.util.Optional;
 @Service
 public class GenderService {
     @Autowired
-    GenderRepository genderRepository;
+    GenderSqlRepository genderRepository;
 
     public Gender findById(String id) {
-        Optional<Gender> result = genderRepository.findById(id);
-        Gender n = null;
-        if (result.isPresent()) {
-            n = result.get();
-        } else {
-            throw new RuntimeException("Didn't find");
-        }
-        return n;
+        return genderRepository.findById(id);
     }
 
     public Iterable<Gender> findAll() {
         return genderRepository.findAll();
     }
 
-    public Iterable<Gender> findAll(Pageable pageable) {
-        return genderRepository.findAll(pageable);
-    }
-
-    public Iterable<Gender> findAll(Sort sort) {
-        return genderRepository.findAll(sort);
-
-    }
-
     public void save(Gender mark) {
         genderRepository.save(mark);
     }
+
+
 }
 

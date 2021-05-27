@@ -2,8 +2,7 @@ package com.SoftwareDevelopment.TrComp.services;
 
 import com.SoftwareDevelopment.TrComp.models.Achievement;
 import com.SoftwareDevelopment.TrComp.models.Customer;
-import com.SoftwareDevelopment.TrComp.repositories.AchievementRepository;
-import com.SoftwareDevelopment.TrComp.repositories.CustomerRepository;
+import com.SoftwareDevelopment.TrComp.repositories.AchievementSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,29 +13,14 @@ import java.util.Optional;
 @Service
 public class AchievementService {
     @Autowired
-    AchievementRepository repository;
+    AchievementSqlRepository repository;
 
     public Achievement findById(Integer id) {
-        Optional<Achievement> result = repository.findById(id);
-        Achievement n = null;
-        if (result.isPresent()) {
-            n = result.get();
-        } else {
-            throw new RuntimeException("Didn't find");
-        }
-        return n;
+        return repository.findById(id);
     }
 
     public Iterable<Achievement> findAll() {
         return repository.findAll();
-    }
-
-    public Iterable<Achievement> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
-    }
-
-    public Iterable<Achievement> findAll(Sort sort) {
-        return repository.findAll(sort);
     }
 
     public void save(Achievement achievement) {

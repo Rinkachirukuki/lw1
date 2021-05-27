@@ -28,9 +28,9 @@ public class DriverController {
     private DriverService driverService;
 
     @GetMapping("/list")
-    public String showAllDrivers(Pageable page, Model model){
+    public String showAllDrivers(Model model){
 
-        model.addAttribute("drivers", driverService.findAll(page));
+        model.addAttribute("drivers", driverService.findAll());
 
         return "driver/show-all-drivers.html";
     }

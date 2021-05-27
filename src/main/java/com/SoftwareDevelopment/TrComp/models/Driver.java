@@ -79,12 +79,6 @@ public class Driver {
         this.gender = gender;
     }
 
-
-    @Override
-    public String toString() {
-        return lastName+ " " + firstName + " " + patronymic;
-    }
-
     @PreRemove
     private void preRemove() {
         for (Vehicle v : vehicles) {
@@ -92,4 +86,8 @@ public class Driver {
         }
     }
 
+    @Override
+    public String toString() {
+        return lastName + " " + firstName + " " + patronymic;
+    }
 }

@@ -1,6 +1,7 @@
 package com.SoftwareDevelopment.TrComp.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class Customer {
     @JoinTable(name = "customer_achievement",
             joinColumns = { @JoinColumn(name = "customer_fk")},
             inverseJoinColumns = { @JoinColumn(name = "achievement_fk")})
-    private Set<Achievement> achievements;
+    private Set<Achievement> achievements = new HashSet<>();
 
     public Customer() {
     }
@@ -93,6 +94,16 @@ public class Customer {
 
     public void setAchievements(Set<Achievement> achievements) {
         this.achievements = achievements;
+    }
+
+    public boolean removeAchievementById(Integer achievementId){
+        for (Achievement a: achievements) {
+            if (a.getId() == achievementId){
+                achievements.remove(a);
+                return true;
+            }
+        }
+        return false;
     }
 
     @PreRemove

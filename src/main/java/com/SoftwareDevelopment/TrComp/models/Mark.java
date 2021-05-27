@@ -34,6 +34,11 @@ public class Mark {
         this.vehicles = vehicles;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     @PreRemove
     private void preRemove() {
         for (Vehicle s : vehicles) {

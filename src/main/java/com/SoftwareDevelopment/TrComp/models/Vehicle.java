@@ -61,6 +61,11 @@ public class Vehicle {
         this.driver = driver;
     }
 
+    @Override
+    public String toString() {
+        return mark + " " + model + " " + number;
+    }
+
 
     @Column(name = "number")
     private String number;
