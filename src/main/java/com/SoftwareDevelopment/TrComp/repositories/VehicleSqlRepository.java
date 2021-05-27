@@ -84,7 +84,7 @@ public class VehicleSqlRepository {
         String sql;
 
         String mark = i.getMark() == null ? "NULL" : "'" + i.getMark().getName() + "'";
-        String driver = i.getDriver() == null ? "NULL" : "'" + i.getDriver().getId() + "'";
+        String driver = i.getDriver().getId() == null ? "NULL" : "'" + i.getDriver().getId() + "'";
 
         if (i.getId() == null){
             sql = String.format(
