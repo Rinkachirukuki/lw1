@@ -36,15 +36,6 @@ public class Customer {
             inverseJoinColumns = { @JoinColumn(name = "achievement_fk")})
     private Set<Achievement> achievements;
 
-    @OneToMany(fetch = FetchType.LAZY ,mappedBy = "customer",
-            cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
-            })
-    private List<TaxiOrder> taxiOrders;
-
-    @OneToMany(fetch = FetchType.LAZY ,mappedBy = "customer",
-            cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
-            })
-    private List<Review> reviews;
 
     public Customer() {
     }
@@ -105,38 +96,15 @@ public class Customer {
         this.achievements = achievements;
     }
 
-    public List<TaxiOrder> getOrders() {
-        return taxiOrders;
-    }
-
-    public void setOrders(List<TaxiOrder> taxiOrders) {
-        this.taxiOrders = taxiOrders;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
     @PreRemove
     private void preRemove() {
         if (gender != null) gender.getCustomers().remove(this);
         if (privilege != null) privilege.getCustomers().remove(this);
-        for (Achievement s : achievements){
+        for (Achievement s : achievements) {
             s.getCustomers().remove(this);
         }
-        for (TaxiOrder s : taxiOrders){
-            s.setCustomer(null);
-        }
-        for (Achievement s : achievements){
+        for (Achievement s : achievements) {
             s.getCustomers().remove(this);
         }
-        for (Review s : reviews){
-            s.setCustomer(null);
-        }
-}
-
+    }
 }

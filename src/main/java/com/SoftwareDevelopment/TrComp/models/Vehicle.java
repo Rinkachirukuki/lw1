@@ -61,14 +61,6 @@ public class Vehicle {
         this.driver = driver;
     }
 
-    public List<TaxiOrder> getOrders() {
-        return taxiOrders;
-    }
-
-    public void setOrders(List<TaxiOrder> taxiOrders) {
-        this.taxiOrders = taxiOrders;
-    }
-
     @Column(name = "number")
     private String number;
 
@@ -82,17 +74,4 @@ public class Vehicle {
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinColumn(name="driver_id")
     private Driver driver;
-
-    @OneToMany(fetch = FetchType.LAZY ,mappedBy = "vehicle",
-            cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
-            })
-    private List<TaxiOrder> taxiOrders;
-
-    @PreRemove
-    private void preRemove() {
-        for (TaxiOrder s : taxiOrders) {
-            s.setVehicle(null);
-        }
-    }
-
 }

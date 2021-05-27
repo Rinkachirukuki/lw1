@@ -28,11 +28,6 @@ public class Driver {
     @JoinColumn(name = "gender_name")
     private Gender gender;
 
-    @OneToMany(fetch = FetchType.LAZY ,mappedBy = "driver",
-            cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
-            })
-    private List<Review> reviews;
-
     public Driver() {
     }
 
@@ -84,13 +79,6 @@ public class Driver {
         this.gender = gender;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     @Override
     public String toString() {
@@ -101,9 +89,6 @@ public class Driver {
     private void preRemove() {
         for (Vehicle v : vehicles) {
             v.setDriver(null);
-        }
-        for (Review r : reviews){
-            r.setDriver(null);
         }
     }
 
