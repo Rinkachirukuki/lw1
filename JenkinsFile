@@ -20,7 +20,7 @@ pipeline {
 
         stage('Pack') {
             steps {
-                bat 'cd "D:\\GitHub\\Lw1_SWdev" && tar -c -z -f "%BUILD_FOLDER%\\%BUILD_NUMBER%.zip" ".\\*"'
+                bat 'cd/d "D:\\GitHub\\Lw1_SWdev" && tar -c -z -f "%BUILD_FOLDER%\\%BUILD_NUMBER%.zip" ".\\*"'
       }
     }
     }
