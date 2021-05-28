@@ -19,7 +19,7 @@ pipeline {
 
         stage('pack') {
       steps {
-        bat 'cd "F:/LW1" && tar -c -z -f "%BUILD_FOLDER%/%BUILD_NUMBER%.zip" "./*"'
+        bat 'cd "C:/LW1" && tar -c -z -f "%BUILD_FOLDER%/%BUILD_NUMBER%.zip" "./*"'
       }
     }
     }
