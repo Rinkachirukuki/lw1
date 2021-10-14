@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <title>Report list</title>
+</head>
+<body>
+<div class="container">
+
+    <h3>Reports</h3>
+    <hr>
+    <a th:href="@{/report/add}"
+       class="btn btn-primary btn-sm mb-3"> Add report </a>
+    <br/>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Priority</th>
+            <th>Short description</th>
+            <th>Description</th>
+            <th>Repeat steps</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="temp : ${reports}">
+
+            <td th:text="${temp.id}" />
+            <td th:text="${temp.priority} ? ${temp.priority} : 'Not defined'" />
+            <td th:text="${temp.short_description}" />
+            <td th:text="${temp.description}" />
+            <td th:text="${temp.repeat_steps}" />
+            <td th:text="${temp.author}" />
+            <td th:text="${temp.date}" />
+            <td>
+                <a th:href="@{/report/update (id=${temp.id})}"
+                    class="btn btn-info btn-sm">Update</a>
+                <a th:href="@{/report/delete (id=${temp.id})}"
+                   class="btn btn-warning btn-sm"
+                   onclick="if (!(confirm('Are you sure?'))) return false">Delete</a>
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+    <hr>
+    <a th:href="@{/}">Go to main menu</a>
+
+
+</div>
+</body>
+</html>

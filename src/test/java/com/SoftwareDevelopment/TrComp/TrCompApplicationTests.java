@@ -2,7 +2,7 @@ package com.SoftwareDevelopment.TrComp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.SoftwareDevelopment.TrComp.controllers.VehicleController;
+import com.SoftwareDevelopment.TrComp.controllers.ReportController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 class TrCompApplicationTests {
 
 	@Autowired
-	private VehicleController controller;
+	private ReportController controller;
 
 	@Autowired
 	private MockMvc mockMvc;

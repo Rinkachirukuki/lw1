@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <title>Update report</title>
+</head>
+
+<body>
+<div class="container">
+    <h3>Reports</h3>
+    <hr>
+
+    <p class="h4 mb-4">Update report</p>
+
+    <form action="#" th:action="@{/report/save}" th:object="${report}"
+          method="POST">
+
+        <input type="hidden" th:field="*{id}">
+
+        <select class="form-control selectpicker mb-4 col-4" th:field="*{priority}" name="priority">
+            <option th:value='null'
+                    th:text="'Not defined'">
+            <option th:each="temp : ${priorities}"
+                    th:value="${temp.id}"
+                    th:text="${temp}">
+            </option>
+        </select>
+
+        <input type="text" th:field="*{short_description}" class="form-control mb-4 col-4"
+               placeholder="Short description" required>
+
+        <input type="text" th:field="*{description}" class="form-control mb-4 col-4"
+               placeholder="Description" required>
+
+        <input type="text" th:field="*{repeat_steps}" class="form-control mb-4 col-4"
+               placeholder="Repeat steps" required>
+
+        <input type="text" th:field="*{author}" class="form-control mb-4 col-4"
+               placeholder="Author" required>
+
+        <input type="date" th:field="*{date}" class="form-control mb-4 col-4"
+               placeholder="Date" required>
+
+        <button type="submit" class="btn btn-warning col-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/report/list}">Go to report list</a>
+</div>
+</body>
+
+</html>

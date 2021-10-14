@@ -2,25 +2,20 @@
 <html xmlns:th = "http://www.thymeleaf.com" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text = "'Меню'"></title>
+    <title th:text = "'Menu'"></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
 
 </head>
 <body>
 <div class="container">
-    <h3>Меню</h3>
+    <h3>Menu</h3>
     <hr>
-    <a th:href="@{/driver/list}"
-       class="btn btn-primary btn-sm mb-3"> Список водителей</a>
+    <a th:href="@{/report/list}"
+       class="btn btn-primary btn-sm mb-3"> Report list </a>
     <br/>
-    <a th:href="@{/vehicle/list}"
-       class="btn btn-primary btn-sm mb-3"> Список автомобилей</a>
+    <a th:href="@{/priority/list}"
+       class="btn btn-primary btn-sm mb-3"> Priority list </a>
     <br/>
-    <a th:href="@{/customer/list}"
-       class="btn btn-primary btn-sm mb-3"> Список клиентов</a>
-    <br/>
-    <a th:href="@{/achievement/list}"
-       class="btn btn-primary btn-sm mb-3"> Список достижений</a>
     </div>
 </body>
 </html>
