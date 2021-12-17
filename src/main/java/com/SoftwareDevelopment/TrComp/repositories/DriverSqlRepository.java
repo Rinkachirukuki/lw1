@@ -1,30 +1,27 @@
 package com.SoftwareDevelopment.TrComp.repositories;
 
-import com.SoftwareDevelopment.TrComp.models.Driver;
-import com.SoftwareDevelopment.TrComp.models.Gender;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.SoftwareDevelopment.TrComp.models.Audience;
+import com.SoftwareDevelopment.TrComp.models.Teacher;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
 @Repository
 @org.springframework.transaction.annotation.Transactional
 public class DriverSqlRepository  {
 
     private JdbcTemplate jdbcTemplate;
-
+/*
     public DriverSqlRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private Driver MapDriver(ResultSet rs) throws SQLException {
-        Driver i = new Driver();
-        Gender g = new Gender();
+    private Teacher MapDriver(ResultSet rs) throws SQLException {
+        Teacher i = new Teacher();
+        Audience g = new Audience();
         g.setName(rs.getString("gender_name"));
         i.setId(rs.getInt("driver_id"));
         i.setFirstName(rs.getString("first_name"));
@@ -35,22 +32,22 @@ public class DriverSqlRepository  {
 
     }
 
-    private RowMapper<Driver> MAPPER = new RowMapper<Driver>() {
+    private RowMapper<Teacher> MAPPER = new RowMapper<Teacher>() {
 
         @Override
-        public Driver mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Driver i = MapDriver(rs);
+        public Teacher mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Teacher i = MapDriver(rs);
             return i;
         }
     };
 
-    public Iterable<Driver> findAll(){
+    public Iterable<Teacher> findAll(){
         String sql = "SELECT * FROM driver";
 
         return jdbcTemplate.query(sql, MAPPER);
     }
 
-    public Driver findById(int id){
+    public Teacher findById(int id){
         String sql = "SELECT * FROM driver where driver_id=" + id;
 
         return jdbcTemplate.queryForObject(sql, MAPPER);
@@ -61,7 +58,7 @@ public class DriverSqlRepository  {
         jdbcTemplate.execute(sql);
     }
 
-    public void save(Driver i) {
+    public void save(Teacher i) {
         String sql;
 
         String gender = i.getGender() == null ? "NULL" : "'" + i.getGender().getName() + "'";
@@ -81,6 +78,6 @@ public class DriverSqlRepository  {
         }
         jdbcTemplate.execute(sql);
     }
-
+*/
 
 }

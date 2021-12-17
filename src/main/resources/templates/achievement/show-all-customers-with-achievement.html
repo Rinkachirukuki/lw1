@@ -13,11 +13,11 @@
 
     <h3>Клиенты</h3>
     <hr>
-    <a th:href="@{/customer/add}"
+    <a th:href="@{/aClass/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить клиента </a>
     <br/>
     <div> Клиенты с достижением: </div>
-    <td th:text="${achievement.name}">
+    <td th:text="${student.name}">
     </td>
     <br/>
 
@@ -37,17 +37,17 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempCustomer : ${achievement.customers}">
+        <tr th:each="tempCustomer : ${student.customers}">
 
             <td th:text="${tempCustomer.id}" />
             <td th:text="${tempCustomer.lastName}" />
             <td th:text="${tempCustomer.firstName}" />
             <td th:text="${tempCustomer.patronymic}" />
-            <td th:text="${tempCustomer.gender} ? ${tempCustomer.gender.name} : 'Не указано'" />
-            <td th:text="${tempCustomer.privilege} ? ${tempCustomer.privilege.name} : 'Не указано'" />
+            <td th:text="${tempCustomer.audience} ? ${tempCustomer.audience.name} : 'Не указано'" />
+            <td th:text="${tempCustomer.discipline} ? ${tempCustomer.discipline.name} : 'Не указано'" />
             <td>
 
-                <a th:href="@{/customer/deleteAchievement (achievementId=${achievement.id},customerId=${tempCustomer.id})}"
+                <a th:href="@{/aClass/deleteAchievement (achievementId=${student.id},customerId=${tempCustomer.id})}"
                    class="btn btn-warning btn-sm"
                    onclick="if (!(confirm('Лишить достижения?'))) return false">Лишить достижения</a>
             </td>

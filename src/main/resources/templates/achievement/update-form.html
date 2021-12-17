@@ -17,7 +17,7 @@
 
     <p class="h4 mb-4">Достижения</p>
 
-    <form action="#" th:action="@{/achievement/save}" th:object="${achievement}"
+    <form action="#" th:action="@{/student/save}" th:object="${student}"
           method="POST">
 
         <input type="hidden" th:field="*{id}">
@@ -31,7 +31,7 @@
         <button type="submit" class="btn btn-warning col-2">Сохранить</button>
     </form>
     <hr>
-    <a th:href="@{/driver/list}">К списку достижений</a>
+    <a th:href="@{/teacher/list}">К списку достижений</a>
 </div>
 </body>
 

@@ -13,7 +13,7 @@
 
     <h3>Автомобили</h3>
     <hr>
-    <a th:href="@{/vehicle/add}"
+    <a th:href="@{/group/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить автомобиль </a>
     <br/>
 
@@ -30,16 +30,16 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempVehicle : ${vehicles}">
+        <tr th:each="tempVehicle : ${groups}">
 
             <td th:text="${tempVehicle.id}" />
             <td th:text="${tempVehicle.number}" />
             <td th:text="${tempVehicle.mark.name} ? ${tempVehicle.mark.name} : 'Не указано'" />
             <td th:text="${tempVehicle.model}" />
             <td>
-                <a th:href="@{/vehicle/update (id=${tempVehicle.id})}"
+                <a th:href="@{/group/update (id=${tempVehicle.id})}"
                     class="btn btn-info btn-sm">Обновить</a>
-                <a th:href="@{/vehicle/delete (id=${tempVehicle.id})}"
+                <a th:href="@{/group/delete (id=${tempVehicle.id})}"
                    class="btn btn-warning btn-sm"
                    onclick="if (!(confirm('Удалить?'))) return false">Удалить</a>
             </td>
@@ -48,8 +48,8 @@
 
         </tbody>
     </table>
-    <a th:href="@{/vehicle/exportToXLSX}">XLSX</a>
-    <a th:href="@{/vehicle/exportToPDF}">PDF</a>
+    <a th:href="@{/group/exportToXLSX}">XLSX</a>
+    <a th:href="@{/group/exportToPDF}">PDF</a>
     <hr>
     <a th:href="@{/}">В главное меню</a>
 

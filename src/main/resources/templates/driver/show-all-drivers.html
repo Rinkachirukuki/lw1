@@ -13,7 +13,7 @@
 
     <h3>Водители</h3>
     <hr>
-    <a th:href="@{/driver/add}"
+    <a th:href="@{/teacher/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить водителя </a>
     <br/>
 
@@ -32,17 +32,17 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempDriver : ${drivers}">
+        <tr th:each="tempDriver : ${teachers}">
 
             <td th:text="${tempDriver.id}" />
             <td th:text="${tempDriver.lastName}" />
             <td th:text="${tempDriver.firstName}" />
             <td th:text="${tempDriver.patronymic}" />
-            <td th:text="${tempDriver.gender.name} ? ${tempDriver.gender.name} : 'Не указано'" />
+            <td th:text="${tempDriver.audience.name} ? ${tempDriver.audience.name} : 'Не указано'" />
             <td>
-                <a th:href="@{/driver/update (id=${tempDriver.id})}"
+                <a th:href="@{/teacher/update (id=${tempDriver.id})}"
                     class="btn btn-info btn-sm">Обновить</a>
-                <a th:href="@{/driver/delete (id=${tempDriver.id})}"
+                <a th:href="@{/teacher/delete (id=${tempDriver.id})}"
                    class="btn btn-warning btn-sm"
                    onclick="if (!(confirm('Удалить?'))) return false">Удалить</a>
             </td>

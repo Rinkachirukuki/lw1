@@ -17,7 +17,7 @@
 
     <p class="h4 mb-4">Обновить информацию о водителе</p>
 
-    <form action="#" th:action="@{/driver/save}" th:object="${driver}"
+    <form action="#" th:action="@{/teacher/save}" th:object="${teacher}"
           method="POST">
 
         <input type="hidden" th:field="*{id}">
@@ -31,7 +31,7 @@
         <input type="text" th:field="*{patronymic}" class="form-control mb-4 col-4"
                placeholder="Отчество" required>
 
-        <select class="form-control selectpicker mb-4 col-4" th:field="*{gender}" name="gender">
+        <select class="form-control selectpicker mb-4 col-4" th:field="*{audience}" name="audience">
             <option th:value='null'
                     th:text="'Не указано'">
             <option th:each="tempGender : ${genderList}"
@@ -43,7 +43,7 @@
         <button type="submit" class="btn btn-warning col-2">Сохранить</button>
     </form>
     <hr>
-    <a th:href="@{/driver/list}">К списку водителей</a>
+    <a th:href="@{/teacher/list}">К списку водителей</a>
 </div>
 </body>
 

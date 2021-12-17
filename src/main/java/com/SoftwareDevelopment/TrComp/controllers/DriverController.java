@@ -1,18 +1,11 @@
 package com.SoftwareDevelopment.TrComp.controllers;
 
-import com.SoftwareDevelopment.TrComp.models.Driver;
-import com.SoftwareDevelopment.TrComp.models.Gender;
-import com.SoftwareDevelopment.TrComp.models.Vehicle;
-import com.SoftwareDevelopment.TrComp.services.DriverService;
-import com.SoftwareDevelopment.TrComp.services.GenderService;
-import com.SoftwareDevelopment.TrComp.services.MarkService;
-import com.SoftwareDevelopment.TrComp.services.VehicleService;
-import org.springframework.data.domain.Pageable;
+import com.SoftwareDevelopment.TrComp.models.Teacher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
+/*
 @Controller
 @RequestMapping("/driver")
 public class DriverController {
@@ -55,7 +48,7 @@ public class DriverController {
     @GetMapping("/add")
     public String driverAdd(Model model) {
 
-        model.addAttribute("driver", new Driver());
+        model.addAttribute("driver", new Teacher());
 
         model.addAttribute("genderList", genderService.findAll());
 
@@ -63,8 +56,8 @@ public class DriverController {
     }
 
     @PostMapping("/save")
-    public String driverSave(@ModelAttribute("vehicle") Driver driver) {
-        driverService.save(driver);
+    public String driverSave(@ModelAttribute("vehicle") Teacher teacher) {
+        driverService.save(teacher);
         return "redirect:/driver/list";
     }
 
@@ -72,3 +65,4 @@ public class DriverController {
 
 
 }
+*/

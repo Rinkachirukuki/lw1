@@ -13,18 +13,18 @@
 
     <h3>Достижения</h3>
     <hr>
-    <a th:href="@{/achievement/add}"
+    <a th:href="@{/student/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить достижение </a>
     <br/>
     <div> Добавление достижения для </div>
 
-    <td th:text="${customer.lastName}">
+    <td th:text="${aClass.lastName}">
     </td>
 
-    <td th:text="${customer.firstName}">
+    <td th:text="${aClass.firstName}">
     </td>
 
-    <td th:text="${customer.patronymic}">
+    <td th:text="${aClass.patronymic}">
     </td>
     
     <br/>
@@ -40,15 +40,15 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempAchievement : ${achievementList}">
+        <tr th:each="tempAchievement : ${studentList}">
 
             <td th:text="${tempAchievement.id}" />
             <td th:text="${tempAchievement.name}" />
             <td th:text="${tempAchievement.description}" />
             <td>
-                <a th:href="@{/customer/addAchievement (customerId=${customer.id}, achievementId=${tempAchievement.id})}"
+                <a th:href="@{/aClass/addAchievement (customerId=${aClass.id}, achievementId=${tempAchievement.id})}"
                    class="btn btn-warning btn-sm">Добавить</a>
-                <a th:href="@{/achievement/customerList (achievementId=${tempAchievement.id})}"
+                <a th:href="@{/student/classList (achievementId=${tempAchievement.id})}"
                    class="btn btn-warning btn-sm">Список клиентов</a>
             </td>
 
@@ -57,7 +57,7 @@
     </table>
 
     <hr>
-    <a th:href="@{/achievement/list (customerId = 0)}">К списку достижений</a>
+    <a th:href="@{/student/list (customerId = 0)}">К списку достижений</a>
     <div></div>
     <a th:href="@{/}">В главное меню</a>
 

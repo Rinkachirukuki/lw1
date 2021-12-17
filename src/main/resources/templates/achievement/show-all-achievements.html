@@ -13,7 +13,7 @@
 
     <h3>Достижения</h3>
     <hr>
-    <a th:href="@{/achievement/add}"
+    <a th:href="@{/student/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить достижение </a>
     <br/>
 
@@ -28,16 +28,16 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempAchievement : ${achievementList}">
+        <tr th:each="tempAchievement : ${studentList}">
 
             <td th:text="${tempAchievement.id}" />
             <td th:text="${tempAchievement.name}" />
             <td th:text="${tempAchievement.description}" />
             <td>
-                <a th:href="@{/achievement/customerList (achievementId=${tempAchievement.id})}"
+                <a th:href="@{/student/classList (achievementId=${tempAchievement.id})}"
                    class="btn btn-warning btn-sm">Список клиентов</a>
 
-                <a th:href="@{/achievement/delete (id=${tempAchievement.id})}"
+                <a th:href="@{/student/delete (id=${tempAchievement.id})}"
                    class="btn btn-warning btn-sm"
                    onclick="if (!(confirm('Удалить?'))) return false">Удалить</a>
             </td>

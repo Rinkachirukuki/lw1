@@ -17,7 +17,7 @@
 
     <p class="h4 mb-4">Обновить информацию о клиенте</p>
 
-    <form action="#" th:action="@{/customer/save}" th:object="${customer}"
+    <form action="#" th:action="@{/aClass/save}" th:object="${aClass}"
           method="POST">
 
         <input type="hidden" th:field="*{id}">
@@ -31,7 +31,7 @@
         <input type="text" th:field="*{patronymic}" class="form-control mb-4 col-4"
                placeholder="Отчество" required>
 
-        <select class="form-control selectpicker mb-4 col-4" th:field="*{gender}" name="gender">
+        <select class="form-control selectpicker mb-4 col-4" th:field="*{audience}" name="audience">
             <option th:value='null'
                     th:text="'Не указано'">
             <option th:each="tempGender : ${genderList}"
@@ -40,7 +40,7 @@
             </option>
         </select>
 
-        <select class="form-control selectpicker mb-4 col-4" th:field="*{privilege}" name="privilege">
+        <select class="form-control selectpicker mb-4 col-4" th:field="*{discipline}" name="discipline">
             <option th:value='null'
                     th:text="'Не указано'">
             <option th:each="tempPrivilege : ${privilegeList}"
@@ -64,13 +64,13 @@
             </thead>
 
             <tbody>
-            <tr th:each="tempAchievement : *{achievements}">
+            <tr th:each="tempAchievement : *{students}">
 
                 <td th:text="${tempAchievement.id}" />
                 <td th:text="${tempAchievement.name}" />
                 <td th:text="${tempAchievement.description}" />
                 <td>
-                    <a th:href="@{/customer/deleteAchievement (achievementId=${tempAchievement.id},customerId=*{id})}"
+                    <a th:href="@{/aClass/deleteAchievement (achievementId=${tempAchievement.id},customerId=*{id})}"
                        class="btn btn-warning btn-sm"
                        onclick="if (!(confirm('Лишить достижения?'))) return false">Лишить достижения</a>
                 </td>
@@ -78,13 +78,13 @@
             </tr>
             </tbody>
         </table>
-        <a th:href="@{/achievement/list (customerId = *{id})}">Добавить достижение</a>
+        <a th:href="@{/student/list (customerId = *{id})}">Добавить достижение</a>
         <hr>
 
         <button type="submit" class="btn btn-warning col-2">Сохранить</button>
     </form>
     <hr>
-    <a th:href="@{/customer/list}">К списку клиентов</a>
+    <a th:href="@{/aClass/list}">К списку клиентов</a>
 </div>
 </body>
 

@@ -1,9 +1,6 @@
 package com.SoftwareDevelopment.TrComp;
 
 import com.SoftwareDevelopment.TrComp.converters.StrToDriverConverter;
-import com.SoftwareDevelopment.TrComp.converters.StrToGenderConverter;
-import com.SoftwareDevelopment.TrComp.converters.StrToMarkConverter;
-import com.SoftwareDevelopment.TrComp.converters.StrToPrivilegeConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +18,7 @@ public class TrCompApplication implements WebMvcConfigurer {
 	}
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new StrToGenderConverter());
-		registry.addConverter(new StrToPrivilegeConverter());
-		registry.addConverter(new StrToMarkConverter());
-		registry.addConverter(new StrToDriverConverter());
+		//registry.addConverter(new StrToDriverConverter());
 	}
 
 }

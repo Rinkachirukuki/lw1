@@ -13,7 +13,7 @@
 
     <h3>Клиенты</h3>
     <hr>
-    <a th:href="@{/customer/add}"
+    <a th:href="@{/aClass/add}"
        class="btn btn-primary btn-sm mb-3"> Добавить клиента </a>
     <br/>
 
@@ -39,12 +39,12 @@
             <td th:text="${tempCustomer.lastName}" />
             <td th:text="${tempCustomer.firstName}" />
             <td th:text="${tempCustomer.patronymic}" />
-            <td th:text="${tempCustomer.gender.name} ? ${tempCustomer.gender.name} : 'Не указано'" />
-            <td th:text="${tempCustomer.privilege.name} ? ${tempCustomer.privilege.name} : 'Не указано'" />
+            <td th:text="${tempCustomer.audience.name} ? ${tempCustomer.audience.name} : 'Не указано'" />
+            <td th:text="${tempCustomer.discipline.name} ? ${tempCustomer.discipline.name} : 'Не указано'" />
             <td>
-                <a th:href="@{/customer/update (id=${tempCustomer.id})}"
+                <a th:href="@{/aClass/update (id=${tempCustomer.id})}"
                     class="btn btn-info btn-sm">Обновить</a>
-                <a th:href="@{/customer/delete (id=${tempCustomer.id})}"
+                <a th:href="@{/aClass/delete (id=${tempCustomer.id})}"
                    class="btn btn-warning btn-sm"
                    onclick="if (!(confirm('Удалить?'))) return false">Удалить</a>
             </td>
