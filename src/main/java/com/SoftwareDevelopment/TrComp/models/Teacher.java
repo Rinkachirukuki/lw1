@@ -1,35 +1,32 @@
 package com.SoftwareDevelopment.TrComp.models;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Teacher {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @Column(name = "teacher_code")
-    private Integer code;
-
-    @Column(name = "last_name")
-    private String lName;
+    public String teacher_code;
 
     @Column(name = "first_name")
-    private String fName;
+    public String first_name;
+
+    @Column(name = "last_name")
+    public String last_name;
 
     @Column(name = "patronymic")
-    private String patronymic;
+    public String patronymic;
 
-    @Column(name = "birth_day")
-    private Date bDate;
+    @Column(name = "birth_date")
+    public LocalDate birth_date;
 
     @Column(name = "email")
-    private String email;
+    public String email;
 
     @Column(name = "phone_number")
-    private String pNumber;
+    public String phone_number;
 
     public Teacher() {}
 }

@@ -1,6 +1,6 @@
+/*
 package com.SoftwareDevelopment.TrComp.repositories;
 
-import com.SoftwareDevelopment.TrComp.models.Audience;
 import com.SoftwareDevelopment.TrComp.models.Teacher;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,50 +11,50 @@ import java.sql.SQLException;
 
 @Repository
 @org.springframework.transaction.annotation.Transactional
-public class DriverSqlRepository  {
+public class TeacherSqlRepository1 {
 
     private JdbcTemplate jdbcTemplate;
-/*
-    public DriverSqlRepository(JdbcTemplate jdbcTemplate) {
+
+    public TeacherSqlRepository1(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private Teacher MapDriver(ResultSet rs) throws SQLException {
+    private Teacher CMapper(ResultSet rs) throws SQLException {
         Teacher i = new Teacher();
-        Audience g = new Audience();
-        g.setName(rs.getString("gender_name"));
-        i.setId(rs.getInt("driver_id"));
-        i.setFirstName(rs.getString("first_name"));
-        i.setLastName(rs.getString("last_name"));
-        i.setPatronymic(rs.getString("patronymic"));
-        i.setGender(g);
+        i.fName = rs.getString("first_name");
+        i.lName = rs.getString("last_name");
+        i.patronymic = rs.getString("patronymic");
+        i.bDate = rs.getDate("birthday");
+        i.email = rs.getString("email");
+        i.pNumber = rs.getString("phone_number");
         return i;
 
     }
 
     private RowMapper<Teacher> MAPPER = new RowMapper<Teacher>() {
-
         @Override
         public Teacher mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Teacher i = MapDriver(rs);
+            Teacher i = CMapper(rs);
             return i;
         }
     };
 
     public Iterable<Teacher> findAll(){
-        String sql = "SELECT * FROM driver";
+        String sql = "SELECT * FROM teacher";
+
+
 
         return jdbcTemplate.query(sql, MAPPER);
     }
 
-    public Teacher findById(int id){
-        String sql = "SELECT * FROM driver where driver_id=" + id;
+    public Teacher findById(String id){
+        String sql = "SELECT * FROM teacher where teacher_code="+id;
 
         return jdbcTemplate.queryForObject(sql, MAPPER);
     }
 
     public void deleteById(int id) {
-        String sql = "DELETE FROM driver WHERE driver_id=" + id;
+        String sql = "DELETE FROM teacher WHERE teacher_code=" + id;
         jdbcTemplate.execute(sql);
     }
 
@@ -78,6 +78,7 @@ public class DriverSqlRepository  {
         }
         jdbcTemplate.execute(sql);
     }
-*/
+
 
 }
+*/

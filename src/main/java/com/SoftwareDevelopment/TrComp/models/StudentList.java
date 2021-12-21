@@ -2,7 +2,7 @@ package com.SoftwareDevelopment.TrComp.models;
 
 import javax.persistence.*;
 import java.sql.Time;
-
+/*
 @Entity
 public class StudentList {
     @Id
@@ -11,7 +11,7 @@ public class StudentList {
     private Integer id;
 
     @Column(name = "student_list_code")
-    private Integer code;
+    private String code;
 
     @ManyToOne
     @JoinColumn(name = "class_code")
@@ -29,3 +29,4 @@ public class StudentList {
 
     public StudentList() {}
 }
+*/
