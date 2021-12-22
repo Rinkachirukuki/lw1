@@ -1,32 +1,24 @@
 package com.SoftwareDevelopment.TrComp.models;
 
 import javax.persistence.*;
-import java.sql.Time;
-/*
+
 @Entity
 public class StudentList {
     @Id
-    @Column(name = "id")
+    @Column(name = "student_list_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "student_list_code")
-    private String code;
+    public Integer studentListId;
 
     @ManyToOne
-    @JoinColumn(name = "class_code")
-    private AClass aClass;
+    @JoinColumn(name = "class_id")
+    public AcademicClass academicClass;
 
     @ManyToOne
     @JoinColumn(name = "student_code")
-    private Student student;
+    public Student student;
 
     @Column(name = "status")
-    private String status;
-
-    @Column(name = "arrival_time")
-    private Time aTime;
+    public String status;
 
     public StudentList() {}
 }
-*/

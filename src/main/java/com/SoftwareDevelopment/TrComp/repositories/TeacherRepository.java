@@ -1,7 +1,15 @@
 package com.SoftwareDevelopment.TrComp.repositories;
 
 import com.SoftwareDevelopment.TrComp.models.Teacher;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
+@Repository
 public interface TeacherRepository extends
-        JpaRepository<Teacher, String> { };
+        CrudRepository<Teacher, String> {
+
+    Optional<Teacher> findByPhoneNumber(String phoneNumber);
+    Optional<Teacher> findByEmail(String email);
+};

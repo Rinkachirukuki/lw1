@@ -1,17 +1,36 @@
 package com.SoftwareDevelopment.TrComp.models;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 
+@Entity
 public class Student {
 
-    public String code;
-    public String fName;
-    public String lName;
+    @Id
+    @Column(name = "student_code")
+    public String studentCode;
+
+    @Column(name = "first_name")
+    public String firstName;
+
+    @Column(name = "last_name")
+    public String lastName;
+
+    @Column(name = "patronymic")
     public String patronymic;
-    public Date bDate;
+
+    @Column(name = "birth_date")
+    public LocalDate birthDate;
+
+    @Column(name = "email")
     public String email;
-    public String pNumber;
-    public AGroup AGroup;
+
+    @Column(name = "phone_number")
+    public String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "group_code")
+    public AcademicGroup AcademicGroup;
 
     public Student() {}
 }

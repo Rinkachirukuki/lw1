@@ -1,6 +1,5 @@
 package com.SoftwareDevelopment.TrComp;
 
-import com.SoftwareDevelopment.TrComp.converters.StrToDriverConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
