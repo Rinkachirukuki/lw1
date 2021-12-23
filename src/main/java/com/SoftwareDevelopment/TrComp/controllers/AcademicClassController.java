@@ -1,8 +1,10 @@
 package com.SoftwareDevelopment.TrComp.controllers;
 
 import com.SoftwareDevelopment.TrComp.models.AcademicClass;
+import com.SoftwareDevelopment.TrComp.repositories.AcademicClassSqlRepository;
 import com.SoftwareDevelopment.TrComp.response.StringResponse;
 import com.SoftwareDevelopment.TrComp.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -11,6 +13,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/academicClass")
 public class AcademicClassController {
+
+    @Autowired
+    private AcademicClassSqlRepository academicClassSqlRepository;
 
     private AcademicClassService service;
     private AcademicDisciplineService academicDisciplineService;
@@ -29,7 +34,7 @@ public class AcademicClassController {
 
     @GetMapping("/")
     Iterable<AcademicClass> getAll() {
-        return service.findAll();
+        return academicClassSqlRepository.findAll();
     }
 
     @GetMapping("/{id}")

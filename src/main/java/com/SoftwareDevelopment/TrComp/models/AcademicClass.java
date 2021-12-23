@@ -1,5 +1,7 @@
 package com.SoftwareDevelopment.TrComp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -16,19 +18,19 @@ public class AcademicClass {
 
     @ManyToOne
     @JoinColumn(name = "group_code")
-    public AcademicGroup academicGroup;
+    public AcademicGroup academicGroup = new AcademicGroup();
 
     @ManyToOne
     @JoinColumn(name = "audience_code")
-    public Audience audience;
+    public Audience audience = new Audience();
 
     @ManyToOne
     @JoinColumn(name = "discipline_code")
-    public AcademicDiscipline academicDiscipline;
+    public AcademicDiscipline academicDiscipline = new AcademicDiscipline();
 
     @ManyToOne
     @JoinColumn(name = "teacher_code")
-    public Teacher teacher;
+    public Teacher teacher = new Teacher();
 
     public AcademicClass() {}
 }

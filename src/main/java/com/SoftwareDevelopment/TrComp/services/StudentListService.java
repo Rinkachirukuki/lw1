@@ -1,5 +1,7 @@
 package com.SoftwareDevelopment.TrComp.services;
 
+import com.SoftwareDevelopment.TrComp.models.AcademicClass;
+import com.SoftwareDevelopment.TrComp.models.Student;
 import com.SoftwareDevelopment.TrComp.models.StudentList;
 import com.SoftwareDevelopment.TrComp.repositories.StudentListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,10 @@ public class StudentListService {
 
     public boolean existsById(Integer id){
         return repository.existsById(id);
+    }
+
+    public Optional<StudentList> findByAcademicClassAndStudent(AcademicClass academicClass, Student student){
+        return repository.findByAcademicClassAndStudent(academicClass,student);
     }
 
 }

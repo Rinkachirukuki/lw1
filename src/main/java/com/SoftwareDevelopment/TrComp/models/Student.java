@@ -1,5 +1,7 @@
 package com.SoftwareDevelopment.TrComp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -28,9 +30,10 @@ public class Student {
     @Column(name = "phone_number")
     public String phoneNumber;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "group_code")
-    public AcademicGroup AcademicGroup;
+    public AcademicGroup academicGroup;
 
     public Student() {}
 }
