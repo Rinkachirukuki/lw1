@@ -30,8 +30,7 @@ public class Student {
     @Column(name = "phone_number")
     public String phoneNumber;
 
-    @JsonIgnore
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "group_code")
     public AcademicGroup academicGroup;
 

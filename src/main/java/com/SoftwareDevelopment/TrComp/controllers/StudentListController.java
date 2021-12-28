@@ -66,6 +66,9 @@ public class StudentListController {
             return new StringResponse("Неверно указано учебное занятие");
 
         Optional<StudentList> o_idCheck = i.studentListId != null ? service.findById(i.studentListId) : Optional.empty();
+
+        //Проверка, что из нужной группы
+
         Optional<StudentList> o_studentClassCheck = service.findByAcademicClassAndStudent(i.academicClass,i.student);
 
         if (o_idCheck.isEmpty()) {

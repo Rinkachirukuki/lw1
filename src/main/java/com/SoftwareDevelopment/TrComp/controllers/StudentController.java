@@ -2,6 +2,7 @@ package com.SoftwareDevelopment.TrComp.controllers;
 
 import com.SoftwareDevelopment.TrComp.models.Student;
 import com.SoftwareDevelopment.TrComp.response.StringResponse;
+import com.SoftwareDevelopment.TrComp.services.AcademicGroupService;
 import com.SoftwareDevelopment.TrComp.services.StudentService;
 import com.SoftwareDevelopment.TrComp.validators.EmailValidator;
 import com.SoftwareDevelopment.TrComp.validators.PhoneNumberValidator;
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class StudentController {
 
     private StudentService service;
+    private AcademicGroupService academicGroupService;
 
-    public StudentController(StudentService service) {
+    public StudentController(StudentService service, AcademicGroupService academicGroupService) {
         this.service = service;
+        this.academicGroupService = academicGroupService;
     }
 
     @GetMapping("/")
@@ -41,19 +44,24 @@ public class StudentController {
                 i.phoneNumber == null ||
                 i.birthDate == null ||
                 i.email == null ||
+                i.academicGroup == null ||
 
                 i.studentCode.isEmpty() ||
                 i.firstName.isEmpty() ||
                 i.lastName.isEmpty() ||
                 i.patronymic.isEmpty() ||
                 i.phoneNumber.isEmpty() ||
-                i.email.isEmpty()
+                i.email.isEmpty() ||
+                i.academicGroup.groupCode.isEmpty()
         )
             return new StringResponse("Заполнены не все поля");
 
         Optional<Student> o_idCheck     = service.findById(i.studentCode);
         Optional<Student> o_emailCheck  = service.findByEmail(i.email);
         Optional<Student> o_phNumCheck  = service.findByPhoneNumber(i.phoneNumber);
+
+        if (!academicGroupService.existsById(i.academicGroup.groupCode))
+            return new StringResponse("Неверно указана академическая группа");
 
         if (o_idCheck.isEmpty()) {
             if(o_emailCheck.isPresent())
